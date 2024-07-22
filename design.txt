@@ -1,0 +1,10 @@
+Each train and passenger has its own thread. At the beginning, all threads are
+started, and then they are joined right as the simulation ends.
+
+For a train moving from one stop to the next, it acquires a lock on Train.class
+Only one train should move at a time so that they don;t collide at the same station.
+
+For passengers boarding and deboarding, use a lock on the train that they are
+boarding/deboarding (because the train shouldn't move while the passenger is boarding).
+Since the train must also not be moving, when it wants to move it must also acquire
+its own lock (so it will lock on itself and Train.class).
